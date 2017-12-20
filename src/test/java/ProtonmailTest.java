@@ -7,6 +7,7 @@ import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.Assert;
+import org.testng.annotations.AfterClass;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.DataProvider;
 import org.testng.annotations.Test;
@@ -24,6 +25,7 @@ public class ProtonmailTest {
         System.setProperty("webdriver.chrome.driver", "src/main/resources/chromedriver.exe");
         driver = new ChromeDriver();
         driver.get("https://protonmail.com/");
+        driver.manage().window().maximize();
 
 
     }
@@ -97,6 +99,10 @@ public class ProtonmailTest {
             }
         }
 
+    }
+    @AfterClass
+    private void closeBrowser(){
+        driver.close();
     }
 
 
