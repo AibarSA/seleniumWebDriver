@@ -33,7 +33,7 @@ public class InboxPage {
     @FindBy(xpath = "//*[@class='protonmail_signature_block']/preceding-sibling::div[2]")
     WebElement textBox;
 
-    @FindBy(xpath = "//*[@data-original-title = 'Закрыть']")
+    @FindBy(xpath = "//*[@aria-label='Сохранить']")
     WebElement closeButton;
 
     @FindBy(xpath = "//span[text() = 'Черновики']")

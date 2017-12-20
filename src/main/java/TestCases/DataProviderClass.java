@@ -9,7 +9,7 @@ public class DataProviderClass {
     @DataProvider
     public Object[][] loginData(){
         return new Object[][]{
-                {"automationTest@protonmail.com", "test123456"}
+                {"arraylist@protonmail.com", "test123456"}
         };
     }
 

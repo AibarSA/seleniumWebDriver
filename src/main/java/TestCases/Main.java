@@ -77,14 +77,18 @@ public class Main {
         webDriverWait.until(ExpectedConditions.textToBePresentInElement(inboxPage.textBox(),textContent));
 
         driver.switchTo().defaultContent();
+
         inboxPage.closeButton().click();
+        webDriverWait.until(ExpectedConditions.visibilityOf(driver.findElement(By.xpath("//span[@ng-bind-html = '$message']"))));
     }
+
 
     @Test(groups = {"Smoke test"}, dataProvider = "testDataForMail" , dataProviderClass = DataProviderClass.class, dependsOnMethods = {"createNewMail"})
     private void checkingDraftPresence(String email, String subject, String textContent) throws InterruptedException {
         webDriverWait.until(ExpectedConditions.elementToBeClickable(inboxPage.drafts()));
         inboxPage.drafts().click();
         webDriverWait.until(ExpectedConditions.elementToBeClickable(inboxPage.draftsList().get(0)));
+
         List<WebElement> list = inboxPage.draftsList();
         for (WebElement webElement : list) {
             if (inboxPage.sendersName().getText().equals(email) && inboxPage.subjectText().getText().equals(subject)){
@@ -98,15 +102,15 @@ public class Main {
                 if (inboxPage.textBox().getText().equals(textContent)){
                     driver.switchTo().defaultContent();
                     webDriverWait.until(ExpectedConditions.elementToBeClickable(inboxPage.send()));
-                    inboxPage.send().click();
 
+                    inboxPage.send().click();
+                    webDriverWait.until(ExpectedConditions.visibilityOf(driver.findElement(By.xpath("//span[@ng-bind-html = '$message']"))));
                 }
                 break;
             }
         }
     }
-
-    @AfterTest
+    @AfterTest(groups = {"Smoke test"})
     public void closeBrowser(){
         driver.quit();
     }
