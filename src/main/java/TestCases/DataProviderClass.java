@@ -1,5 +1,7 @@
 package TestCases;
 
+
+import objectRepositoryPF.Mail;
 import org.testng.annotations.DataProvider;
 
 public class DataProviderClass {
@@ -16,7 +18,7 @@ public class DataProviderClass {
     @DataProvider
     public Object[][] testDataForMail(){
         return new Object[][]{
-                {"aibar.abilchanov@mail.ru", "From Aibar", "Test automation engineers in da house!!! "}
+                {new Mail("aibar.abilchanov@mail.ru", "From Aibar", "Test automation engineers in da house!!! ")}
         };
     }
 }

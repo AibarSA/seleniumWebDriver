@@ -2,25 +2,23 @@ package TestCases;
 
 import objectRepository.HomePage;
 import objectRepository.InboxPage;
-import objectRepository.LoginPage;
-import org.openqa.selenium.By;
+import objectRepository.Mail;
+import objectRepositoryPF.HomePagePF;
+import objectRepositoryPF.InboxPagePF;
 import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
-import org.openqa.selenium.interactions.Action;
-import org.openqa.selenium.interactions.Actions;
-import org.openqa.selenium.support.ui.ExpectedConditions;
-import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.Assert;
-import org.testng.annotations.*;
+import org.testng.annotations.AfterTest;
+import org.testng.annotations.BeforeTest;
+import org.testng.annotations.Test;
 
-import java.util.List;
 import java.util.concurrent.TimeUnit;
 
-public class Main {
+public class MailTestPF {
+
     WebDriver driver;
-    InboxPage inboxPage;
-    HomePage homePage;
+    InboxPagePF inboxPage;
+    HomePagePF homePage;
 
 
     @BeforeTest(groups = {"Smoke test"})
@@ -34,20 +32,20 @@ public class Main {
 
     @Test(groups = {"Smoke test"}, dataProvider="loginData", dataProviderClass = DataProviderClass.class)
     public void logIn(String email, String password) throws InterruptedException {
-        homePage = new HomePage(driver);
-        inboxPage = new InboxPage(driver);
+        homePage = new HomePagePF(driver);
+        inboxPage = new InboxPagePF(driver);
         homePage.clickLoginButton().login(email,password);
         Assert.assertEquals("Добро пожаловать", inboxPage.welcomeText());
     }
 
     @Test(groups = {"Smoke test"}, dataProvider="testDataForMail", dataProviderClass = DataProviderClass.class, dependsOnMethods ={"logIn"} )
-    private void createNewMail(String email, String subject, String textContent) throws InterruptedException {
-        inboxPage.createNewMail(email,subject,textContent);
+    private void createNewMail(objectRepositoryPF.Mail mail) throws InterruptedException {
+        inboxPage.createNewMail(mail);
     }
 
     @Test(groups = {"Smoke test"}, dataProvider = "testDataForMail" , dataProviderClass = DataProviderClass.class, dependsOnMethods = {"createNewMail"})
-    private void checkingDraftPresence(String email, String subject, String textContent) throws InterruptedException {
-        inboxPage.checkDraftAndSend(email, subject, textContent);
+    private void checkingDraftPresence(objectRepositoryPF.Mail mail) throws InterruptedException {
+        inboxPage.checkDraftAndSend(mail);
     }
 
     @AfterTest(groups = {"Smoke test"})

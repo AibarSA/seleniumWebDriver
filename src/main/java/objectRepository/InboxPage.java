@@ -32,16 +32,16 @@ public class InboxPage extends AbstractPage {
         return getDriver().findElement(WELCOME_TEXT).getText();
     }
 
-    public void createNewMail(String email, String subject, String textContent) throws InterruptedException {
+    public void createNewMail(Mail mail) throws InterruptedException {
         getDriver().findElement(COMPOSE_BUTTON).click();
         waitForElementToBeClickable(RECIPIENT);
-        getDriver().findElement(RECIPIENT).sendKeys(email);
-        getDriver().findElement(SUBJECT).sendKeys(subject);
+        getDriver().findElement(RECIPIENT).sendKeys(mail.getEmail());
+        getDriver().findElement(SUBJECT).sendKeys(mail.getSubject());
         getDriver().switchTo().frame(getDriver().findElement(FRAME));
         getDriver().findElement(TEXT_BOX).click();
 
         Actions make  = new Actions(getDriver());
-        Action kbEvents = make.sendKeys(textContent).build();
+        Action kbEvents = make.sendKeys(mail.getTextContent()).build();
         kbEvents.perform();
 
         getDriver().switchTo().defaultContent();
@@ -52,7 +52,7 @@ public class InboxPage extends AbstractPage {
     }
 
 
-    public void checkDraftAndSend(String email, String subject, String textContent) throws InterruptedException {
+    public void checkDraftAndSend(Mail mail) throws InterruptedException {
         waitForElementToBeClickable(DRAFTS);
         getDriver().findElement(DRAFTS).click();
         waitForElementToBeClickable(DRAFTS_LIST);
@@ -60,13 +60,13 @@ public class InboxPage extends AbstractPage {
         List<WebElement> list = getDriver().findElements(DRAFTS_LIST);
 
         for (WebElement webElement : list) {
-            if (getDriver().findElement(SENDERS_NAME).getText().equals(email) && getDriver().findElement(SUBJECT_TEXT).getText().equals(subject)){
+            if (getDriver().findElement(SENDERS_NAME).getText().equals(mail.getEmail()) && getDriver().findElement(SUBJECT_TEXT).getText().equals(mail.getSubject())){
                 webElement.click();
 
                 WebElement iFrame = getDriver().findElement(FRAME);
                 getDriver().switchTo().frame(iFrame);
 
-                if (getDriver().findElement(TEXT_BOX).getText().equals(textContent)){
+                if (getDriver().findElement(TEXT_BOX).getText().equals(mail.getTextContent())){
                     getDriver().switchTo().defaultContent();
 
                     getDriver().findElement(SEND).click();
