@@ -32,11 +32,29 @@ public class InboxPagePF extends AbstractPagePF {
     @FindBy(xpath = "//*[@aria-label='Сохранить']")
     private WebElement saveButton;
 
+    @FindBy(xpath = "//*[@aria-label='Закрыть']")
+    private WebElement closeButton;
+
+    @FindBy(xpath = "//span[text()='Все письма']")
+    private WebElement incoming;
+
+
+    @FindBy(xpath = "//*[@class='conversation-wrapper']")
+    private WebElement slider;
+
+    @FindBy(xpath = "//*[@data-pt-dropzone-item='archive']")
+    private WebElement archive;
+
     @FindBy(xpath = "//span[text() = 'Черновики']")
     private WebElement drafts;
 
     @FindBy(xpath = "//*[@ng-repeat = 'conversation in conversations track by conversation.ID']")
     private List<WebElement> draftsList;
+
+
+
+    @FindBy(xpath = "//ul[@class='menu sidebarApp-menu']/li")
+    private List<WebElement> menuList;
 
     @FindBy(xpath = "//*[@class = 'senders-name']")
     private WebElement sendersName;
@@ -49,6 +67,26 @@ public class InboxPagePF extends AbstractPagePF {
 
     @FindBy(xpath = "//span[@ng-bind-html = '$message']")
     private WebElement messagePopUp;
+
+    @FindBy(xpath = "//a[text()='Droppable']")
+    private WebElement droppableMenu;
+
+    @FindBy(xpath = "//*[@class='demo-frame']")
+    private WebElement droppFrame;
+
+    @FindBy(xpath = "//*[@id='draggable']")
+    private WebElement draggable;
+
+    @FindBy(xpath = "//*[@id='droppable']")
+    private WebElement droppable;
+
+
+
+
+
+
+
+
 
 
 
@@ -71,7 +109,7 @@ public class InboxPagePF extends AbstractPagePF {
         getDriver().switchTo().frame(frame);
         textBox.click();
 
-        Actions make  = new Actions(getDriver());
+        make  = new Actions(getDriver());
         Action kbEvents = make.sendKeys(mail.getTextContent()).build();
         kbEvents.perform();
 
@@ -79,6 +117,7 @@ public class InboxPagePF extends AbstractPagePF {
 
         saveButton.click();
         waitForVisibilityOfAllElementsLocatedBy(messagePopUp);
+        closeButton.click();
 
     }
 
@@ -87,6 +126,8 @@ public class InboxPagePF extends AbstractPagePF {
         waitForElementToBeClickable(drafts);
         drafts.click();
         waitForListElements(draftsList);
+
+
 
         List<WebElement> list = (List<WebElement>) draftsList;
 
@@ -110,5 +151,48 @@ public class InboxPagePF extends AbstractPagePF {
         }
 
     }
+
+
+    public void dragAndDrop(){
+        waitForElementToBeClickable(droppableMenu);
+        droppableMenu.click();
+        waitForVisibilityOfAllElementsLocatedBy(droppFrame);
+
+        getDriver().switchTo().frame(droppFrame);
+
+
+        Actions make  = new Actions(getDriver());
+        Action kbEvents = make.dragAndDrop(draggable,droppable).build();
+        kbEvents.perform();
+
+
+
+
+
+
+//        List<WebElement> list = (List<WebElement>) draftsList;
+//        List<WebElement> menuL = (List<WebElement>) menuList;
+//
+//
+//        for (WebElement webElement : list) {
+//
+//            for (WebElement element : menuL) {
+//                if (element.getText().equals("Архив")){
+//                    Actions make  = new Actions(getDriver());
+//                    Action kbEvents = make.dragAndDrop(webElement,element).build();
+//                    kbEvents.perform();
+//                }
+//            }
+//
+//
+//
+//        }
+
+
+
+
+
+    }
+
 
 }
