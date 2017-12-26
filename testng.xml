@@ -1,14 +1,14 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd" >
 <suite name = "Automation Test">
-    <test name = "Smoke TestCases">
+    <test name = "Smoke testCases">
         <groups>
             <run>
                 <include name = "Smoke test"/>
             </run>
         </groups>
         <classes>
-            <class name = "TestCases.MailTestPF"/>
+            <class name = "testCases.MailTest"/>
         </classes>
     </test>
 

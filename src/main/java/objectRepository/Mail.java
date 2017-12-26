@@ -1,4 +1,4 @@
-package objectRepositoryPF;
+package objectRepository;
 
 public class Mail {
     private String email;

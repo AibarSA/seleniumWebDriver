@@ -1,4 +1,4 @@
-package objectRepositoryPF;
+package objectRepository;
 
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
@@ -9,7 +9,7 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 
 import java.util.List;
 
-public class AbstractPagePF {
+public class AbstractPage {
     private WebDriver driver;
     Actions make;
 
@@ -17,15 +17,15 @@ public class AbstractPagePF {
         return driver;
     }
 
-    public AbstractPagePF(WebDriver driver) {
+    public AbstractPage(WebDriver driver) {
 
         this.driver = driver;
         PageFactory.initElements(driver, this);
     }
 
-    public void waitForElementToBeClickable(WebElement locator){
+    public void waitForElementToBeClickable(WebElement webElement){
         WebDriverWait webDriverWait = new WebDriverWait(driver, 30);
-        webDriverWait.until(ExpectedConditions.elementToBeClickable(locator));
+        webDriverWait.until(ExpectedConditions.elementToBeClickable(webElement));
     }
 
     public void waitForVisibilityOfAllElementsLocatedBy(WebElement locator){

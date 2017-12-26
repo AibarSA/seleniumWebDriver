@@ -1,11 +1,10 @@
-package objectRepositoryPF;
+package objectRepository;
 
-import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 
-public class LoginPagePF extends AbstractPagePF {
+public class LoginPage extends AbstractPage {
     @FindBy(xpath = "//*[@id='username']")
     private WebElement userName;
 
@@ -18,16 +17,16 @@ public class LoginPagePF extends AbstractPagePF {
 
 
 
-    public LoginPagePF(WebDriver driver) {
+    public LoginPage(WebDriver driver) {
         super(driver);
     }
 
-    public InboxPagePF login(String email, String password){
+    public InboxPage login(String email, String password){
         waitForElementToBeClickable(userName);
         userName.sendKeys(email);
         passwordField.sendKeys(password);
         submit.click();
-       return new InboxPagePF(getDriver());
+       return new InboxPage(getDriver());
     }
 
 

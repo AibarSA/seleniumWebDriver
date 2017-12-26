@@ -1,6 +1,5 @@
-package objectRepositoryPF;
+package objectRepository;
 
-import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.interactions.Action;
@@ -9,7 +8,7 @@ import org.openqa.selenium.support.FindBy;
 
 import java.util.List;
 
-public class InboxPagePF extends AbstractPagePF {
+public class InboxPage extends AbstractPage {
 
     @FindBy(xpath = "//*[@id='pm_latest']/header")
     private WebElement welcomeText;
@@ -55,7 +54,7 @@ public class InboxPagePF extends AbstractPagePF {
 
 
 
-    public InboxPagePF(WebDriver driver) {
+    public InboxPage(WebDriver driver) {
         super(driver);
     }
 

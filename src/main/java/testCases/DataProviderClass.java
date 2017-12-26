@@ -1,7 +1,7 @@
-package TestCases;
+package testCases;
 
 
-import objectRepositoryPF.Mail;
+import objectRepository.Mail;
 import org.testng.annotations.DataProvider;
 
 public class DataProviderClass {

@@ -1,10 +1,9 @@
-package TestCases;
+package testCases;
 
 
-import objectRepositoryPF.HomePagePF;
-import objectRepositoryPF.InboxPagePF;
+import objectRepository.HomePage;
+import objectRepository.InboxPage;
 import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.remote.DesiredCapabilities;
 import org.openqa.selenium.remote.RemoteWebDriver;
 import org.testng.Assert;
@@ -16,11 +15,11 @@ import java.net.MalformedURLException;
 import java.net.URL;
 import java.util.concurrent.TimeUnit;
 
-public class MailTestPF {
+public class MailTest {
 
     WebDriver driver;
-    InboxPagePF inboxPage;
-    HomePagePF homePage;
+    InboxPage inboxPage;
+    HomePage homePage;
 
     @BeforeTest(groups = {"Smoke test"})
     private void initDriver()   {
@@ -46,19 +45,19 @@ public class MailTestPF {
 
     @Test(groups = {"Smoke test"}, dataProvider="loginData", dataProviderClass = DataProviderClass.class)
     public void logIn(String email, String password) throws InterruptedException {
-        homePage = new HomePagePF(driver);
-        inboxPage = new InboxPagePF(driver);
+        homePage = new HomePage(driver);
+        inboxPage = new InboxPage(driver);
         homePage.clickLoginButton().login(email,password);
         Assert.assertEquals("Добро пожаловать", inboxPage.welcomeText());
     }
 
     @Test(groups = {"Smoke test"}, dataProvider="testDataForMail", dataProviderClass = DataProviderClass.class, dependsOnMethods ={"logIn"} )
-    private void createNewMail(objectRepositoryPF.Mail mail) throws InterruptedException {
+    private void createNewMail(objectRepository.Mail mail) throws InterruptedException {
         inboxPage.createNewMail(mail);
     }
 
     @Test(groups = {"Smoke test"}, dataProvider = "testDataForMail" , dataProviderClass = DataProviderClass.class, dependsOnMethods = {"createNewMail"})
-    private void checkingDraftPresence(objectRepositoryPF.Mail mail) throws InterruptedException {
+    private void checkingDraftPresence(objectRepository.Mail mail) throws InterruptedException {
         inboxPage.checkDraftAndSend(mail);
     }
 
