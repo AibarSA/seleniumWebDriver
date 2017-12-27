@@ -1,4 +1,4 @@
-package objectRepository;
+package com.epam.framework.pages;
 
 public class Mail {
     private String email;

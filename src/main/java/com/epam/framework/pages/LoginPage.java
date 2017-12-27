@@ -1,5 +1,6 @@
-package objectRepository;
+package com.epam.framework.pages;
 
+import com.epam.framework.business_objects.User;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
@@ -21,10 +22,10 @@ public class LoginPage extends AbstractPage {
         super(driver);
     }
 
-    public InboxPage login(String email, String password){
+    public InboxPage login(User user){
         waitForElementToBeClickable(userName);
-        userName.sendKeys(email);
-        passwordField.sendKeys(password);
+        userName.sendKeys(user.getLOGIN());
+        passwordField.sendKeys(user.getPASSWORD());
         submit.click();
        return new InboxPage(getDriver());
     }

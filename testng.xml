@@ -1,14 +1,14 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd" >
 <suite name = "Automation Test">
-    <test name = "Smoke testCases">
+    <test name = "Smoke com.epam.framework.dataProvider">
         <groups>
             <run>
                 <include name = "Smoke test"/>
             </run>
         </groups>
         <classes>
-            <class name = "testCases.MailTest"/>
+            <class name = "com.epam.framework.MailTest"/>
         </classes>
     </test>
 

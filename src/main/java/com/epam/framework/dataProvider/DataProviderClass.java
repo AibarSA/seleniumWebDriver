@@ -1,7 +1,8 @@
-package testCases;
+package com.epam.framework.dataProvider;
 
 
-import objectRepository.Mail;
+import com.epam.framework.business_objects.User;
+import com.epam.framework.pages.Mail;
 import org.testng.annotations.DataProvider;
 
 public class DataProviderClass {
@@ -12,6 +13,7 @@ public class DataProviderClass {
     public Object[][] loginData(){
         return new Object[][]{
                 {"automationTest@protonmail.com", "test123456"}
+
         };
     }
 

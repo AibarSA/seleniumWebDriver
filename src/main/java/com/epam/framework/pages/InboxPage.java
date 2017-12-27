@@ -1,5 +1,6 @@
-package objectRepository;
+package com.epam.framework.pages;
 
+import com.epam.framework.business_objects.Letter;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.interactions.Action;
@@ -63,16 +64,16 @@ public class InboxPage extends AbstractPage {
         return welcomeText.getText();
     }
 
-    public void createNewMail(Mail mail) throws InterruptedException {
+    public void createNewMail(Letter letter) throws InterruptedException {
         composeButton.click();
         waitForElementToBeClickable(recipient);
-        recipient.sendKeys(mail.getEmail());
-        subject.sendKeys(mail.getSubject());
+        recipient.sendKeys(letter.getRecipient());
+        subject.sendKeys(letter.getSubject());
         getDriver().switchTo().frame(frame);
         textBox.click();
 
         make  = new Actions(getDriver());
-        Action kbEvents = make.sendKeys(mail.getTextContent()).build();
+        Action kbEvents = make.sendKeys(letter.getMessage()).build();
         kbEvents.perform();
 
         getDriver().switchTo().defaultContent();
