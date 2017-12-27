@@ -13,7 +13,7 @@ public class DataProviderClass {
     @DataProvider
     public Object[][] loginData(){
         return new Object[][]{
-                {User.USER1}
+                {User.MAIN_USER}
         };
     }
 
