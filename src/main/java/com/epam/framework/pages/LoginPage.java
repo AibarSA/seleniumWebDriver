@@ -24,7 +24,7 @@ public class LoginPage extends AbstractPage {
 
     public InboxPage login(User user){
         waitForElementToBeClickable(userName);
-        userName.sendKeys(user.getLogin());
+        userName.sendKeys(user.getUserName());
         passwordField.sendKeys(user.getPassword());
         submit.click();
        return new InboxPage(getDriver());

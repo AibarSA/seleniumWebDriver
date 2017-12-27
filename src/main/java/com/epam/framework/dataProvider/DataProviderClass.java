@@ -13,7 +13,7 @@ public class DataProviderClass {
     @DataProvider
     public Object[][] loginData(){
         return new Object[][]{
-                {new User("automationTest@protonmail.com", "test123456")}
+                {User.USER1}
         };
     }
 
