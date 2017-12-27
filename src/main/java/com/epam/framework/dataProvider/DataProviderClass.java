@@ -1,6 +1,7 @@
 package com.epam.framework.dataProvider;
 
 
+import com.epam.framework.business_objects.Letter;
 import com.epam.framework.business_objects.User;
 import com.epam.framework.pages.Mail;
 import org.testng.annotations.DataProvider;
@@ -12,8 +13,14 @@ public class DataProviderClass {
     @DataProvider
     public Object[][] loginData(){
         return new Object[][]{
-                {"automationTest@protonmail.com", "test123456"}
+                {new User("automationTest@protonmail.com", "test123456")}
+        };
+    }
 
+    @DataProvider
+    public Object[][] dataForLetter(){
+        return new Object[][]{
+                {new Letter("From Aibar", "abilchanov.aibar@mail.ru", "Test Automation in da house!!!")}
         };
     }
 

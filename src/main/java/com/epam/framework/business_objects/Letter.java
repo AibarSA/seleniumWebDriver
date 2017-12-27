@@ -1,10 +1,16 @@
 package com.epam.framework.business_objects;
 
 public class Letter {
-    private String subject = "From Aibar";
-    private String recipient = "aibar.abilchanov@mail.ru";
-    private String message = "Test automation engineers in da house!!! ";
+    private String subject ;
+    private String recipient ;
+    private String message ;
 
+
+    public Letter(String subject, String recipient, String message) {
+        this.subject = subject;
+        this.recipient = recipient;
+        this.message = message;
+    }
 
     public String getSubject() {
         return subject;

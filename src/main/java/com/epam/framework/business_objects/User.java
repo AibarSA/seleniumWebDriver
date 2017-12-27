@@ -1,14 +1,19 @@
 package com.epam.framework.business_objects;
 
 public class User {
-    private static final String LOGIN  = "automationTest@protonmail.com";
-    private static final String PASSWORD  = "test123456";
+    private String login;
+    private String password;
 
-    public static String getLOGIN() {
-        return LOGIN;
+    public User(String login, String password) {
+        this.login = login;
+        this.password = password;
     }
 
-    public static String getPASSWORD() {
-        return PASSWORD;
+    public String getLogin() {
+        return login;
+    }
+
+    public String getPassword() {
+        return password;
     }
 }

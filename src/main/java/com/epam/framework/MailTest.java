@@ -15,6 +15,8 @@ import org.testng.annotations.Test;
 
 import java.util.concurrent.TimeUnit;
 
+
+
 public class MailTest {
 
     WebDriver driver;
@@ -23,24 +25,27 @@ public class MailTest {
 
     @BeforeTest(groups = {"Smoke test"})
     public void openBrowser(){
+
         System.setProperty("webdriver.chrome.driver", "src/main/resources/driverBinaries/chromedriver.exe");
         driver = new ChromeDriver();
         driver.manage().timeouts().implicitlyWait(15, TimeUnit.SECONDS);
         driver.get("http://protonmail.com/");
+
+
         driver.manage().window().maximize();
     }
 
-    @Test(groups = {"Smoke test"})
-    public void logIn() throws InterruptedException {
+    @Test(groups = {"Smoke test"}, dataProvider = "loginData" , dataProviderClass = DataProviderClass.class)
+    public void logIn(User user) throws InterruptedException {
         homePage = new HomePage(driver);
         inboxPage = new InboxPage(driver);
-        homePage.clickLoginButton().login(new User());
+        homePage.clickLoginButton().login(user);
         Assert.assertEquals("Добро пожаловать", inboxPage.welcomeText());
     }
 
-    @Test(groups = {"Smoke test"}, dependsOnMethods ={"logIn"} )
-    private void createNewMail() throws InterruptedException {
-        inboxPage.createNewMail(new Letter());
+    @Test(groups = {"Smoke test"}, dependsOnMethods ={"logIn"}, dataProvider = "dataForLetter" , dataProviderClass = DataProviderClass.class )
+    private void createNewMail(Letter letter) throws InterruptedException {
+        inboxPage.createNewMail(letter);
     }
 
     @Test(groups = {"Smoke test"}, dataProvider = "testDataForMail" , dataProviderClass = DataProviderClass.class, dependsOnMethods = {"createNewMail"})
