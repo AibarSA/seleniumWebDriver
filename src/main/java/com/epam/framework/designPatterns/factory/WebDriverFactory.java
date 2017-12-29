@@ -11,10 +11,10 @@ public class WebDriverFactory {
         WebDriver driver = null;
 
         if (type.equalsIgnoreCase("chrome")){
-            System.setProperty("webdriver.chrome.driver", "src/main/resources/driverBinaries/chromedriver");
+            System.setProperty("webdriver.chrome.driver", "src/main/resources/driverBinaries/chromedriver.exe");
             driver = new ChromeDriver();
         }else if (type.equalsIgnoreCase("firefox")){
-            System.setProperty("webdriver.gecko.driver", "src/main/resources/driverBinaries/geckodriver");
+            System.setProperty("webdriver.gecko.driver", "src/main/resources/driverBinaries/geckodriver.exe");
             DesiredCapabilities capabilities = DesiredCapabilities.firefox();
             capabilities.setCapability("marionette", true);
             driver = new FirefoxDriver();
