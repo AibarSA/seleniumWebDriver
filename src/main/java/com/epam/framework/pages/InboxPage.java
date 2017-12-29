@@ -1,6 +1,7 @@
 package com.epam.framework.pages;
 
 import com.epam.framework.business_objects.Letter;
+import com.epam.framework.designPatterns.decorator.CustomDriverDecorator;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.interactions.Action;
@@ -67,8 +68,8 @@ public class InboxPage extends AbstractPage {
     public void createNewMail(Letter letter) throws InterruptedException {
         composeButton.click();
         waitForElementToBeClickable(recipient);
-        recipient.sendKeys(letter.getRecipient());
-        subject.sendKeys(letter.getSubject());
+        new CustomDriverDecorator(recipient).sendKeys(letter.getRecipient());
+        new CustomDriverDecorator(subject).sendKeys(letter.getSubject());
         getDriver().switchTo().frame(frame);
         textBox.click();
 

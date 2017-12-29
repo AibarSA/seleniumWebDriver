@@ -3,6 +3,7 @@ package com.epam.framework;
 
 import com.epam.framework.business_objects.Letter;
 import com.epam.framework.business_objects.User;
+import com.epam.framework.designPatterns.factory.WebDriverFactory;
 import com.epam.framework.pages.HomePage;
 import com.epam.framework.pages.InboxPage;
 import com.epam.framework.dataProvider.DataProviderClass;
@@ -26,12 +27,10 @@ public class MailTest {
     @BeforeTest(groups = {"Smoke test"})
     public void openBrowser(){
 
-        System.setProperty("webdriver.chrome.driver", "src/main/resources/driverBinaries/chromedriver.exe");
-        driver = new ChromeDriver();
+        //driver = ChromeWebDriver.getInstance();                        // <== singleton
+        driver = WebDriverFactory.createDriverByType("chrome");    // <== factory
         driver.manage().timeouts().implicitlyWait(15, TimeUnit.SECONDS);
         driver.get("http://protonmail.com/");
-
-
         driver.manage().window().maximize();
     }
 
