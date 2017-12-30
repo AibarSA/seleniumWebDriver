@@ -9,15 +9,15 @@ import org.openqa.selenium.remote.DesiredCapabilities;
 public class WebDriverFactory {
     public static WebDriver createDriverByType(String type){
         WebDriver driver = null;
+        WebDriverCreator creator;
 
         if (type.equalsIgnoreCase("chrome")){
-            System.setProperty("webdriver.chrome.driver", "src/main/resources/driverBinaries/chromedriver.exe");
-            driver = new ChromeDriver();
+            creator = new ChromeDriverCreator();
+            driver =  creator.factoryMethod();
         }else if (type.equalsIgnoreCase("firefox")){
-            System.setProperty("webdriver.gecko.driver", "src/main/resources/driverBinaries/geckodriver.exe");
-            DesiredCapabilities capabilities = DesiredCapabilities.firefox();
-            capabilities.setCapability("marionette", true);
-            driver = new FirefoxDriver();
+            creator = new FireFoxGeckoDriverCreator();
+            driver = creator.factoryMethod();
+
 
         }
         return driver;

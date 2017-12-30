@@ -13,8 +13,10 @@ public class ChromeWebDriver {
     }
 
     public static WebDriver getInstance(){
-        System.setProperty("webdriver.chrome.driver", "src/main/resources/driverBinaries/chromedriver.exe");
-        driver = new ChromeDriver();
+        if (driver == null) {
+            System.setProperty("webdriver.chrome.driver", "src/main/resources/driverBinaries/chromedriver");
+            driver = new ChromeDriver();
+        }
         return driver;
     }
 
