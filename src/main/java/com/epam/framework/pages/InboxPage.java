@@ -65,16 +65,16 @@ public class InboxPage extends AbstractPage {
         return welcomeText.getText();
     }
 
-    public void createNewMail(Letter letter) throws InterruptedException {
+    public void createNewMail(Letter letter) {
         composeButton.click();
         waitForElementToBeClickable(recipient);
-        new CustomDriverDecorator(recipient).sendKeys(letter.getRecipient());
-        new CustomDriverDecorator(subject).sendKeys(letter.getSubject());
+        recipient.sendKeys(letter.getRecipient());
+        subject.sendKeys(letter.getSubject());
         getDriver().switchTo().frame(frame);
         textBox.click();
 
         make  = new Actions(getDriver());
-        Action kbEvents = make.sendKeys(letter.getMessage()).build();
+        Action kbEvents = make.sendKeys(letter.getTextContent()).build();
         kbEvents.perform();
 
         getDriver().switchTo().defaultContent();
@@ -86,7 +86,7 @@ public class InboxPage extends AbstractPage {
     }
 
 
-    public void checkDraftAndSend(Mail mail) throws InterruptedException {
+    public void checkDraftAndSend(Letter letter) {
         waitForElementToBeClickable(drafts);
         drafts.click();
         waitForListElements(draftsList);
@@ -97,13 +97,13 @@ public class InboxPage extends AbstractPage {
 
 
         for (WebElement webElement : list) {
-            if (sendersName.getText().equals(mail.getEmail()) && subjectText.getText().equals(mail.getSubject())){
+            if (sendersName.getText().equals(letter.getRecipient()) && subjectText.getText().equals(letter.getSubject())){
                 webElement.click();
 
                 WebElement iFrame = frame;
                 getDriver().switchTo().frame(iFrame);
 
-                if (textBox.getText().equals(mail.getTextContent())){
+                if (textBox.getText().equals(letter.getTextContent())){
                     getDriver().switchTo().defaultContent();
 
                     send.click();

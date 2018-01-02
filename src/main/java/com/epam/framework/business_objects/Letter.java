@@ -3,24 +3,25 @@ package com.epam.framework.business_objects;
 public class Letter {
     private String subject ;
     private String recipient ;
-    private String message ;
+    private String textContent;
 
 
-    public Letter(String subject, String recipient, String message) {
-        this.subject = subject;
+    public Letter(String recipient, String subject, String message) {
         this.recipient = recipient;
-        this.message = message;
+        this.subject = subject;
+        this.textContent = message;
+    }
+
+
+    public String getRecipient() {
+        return recipient;
     }
 
     public String getSubject() {
         return subject;
     }
 
-    public String getRecipient() {
-        return recipient;
-    }
-
-    public String getMessage() {
-        return message;
+    public String getTextContent() {
+        return textContent;
     }
 }

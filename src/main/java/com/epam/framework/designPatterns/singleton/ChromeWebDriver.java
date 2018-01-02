@@ -14,7 +14,7 @@ public class ChromeWebDriver {
 
     public static WebDriver getInstance(){
         if (driver == null) {
-            System.setProperty("webdriver.chrome.driver", "src/main/resources/driverBinaries/chromedriver");
+            System.setProperty("webdriver.chrome.driver", "src/main/resources/driverBinaries/chromedriver.exe");
             driver = new ChromeDriver();
         }
         return driver;

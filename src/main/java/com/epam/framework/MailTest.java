@@ -35,7 +35,7 @@ public class MailTest {
     }
 
     @Test(groups = {"Smoke test"}, dataProvider = "loginData" , dataProviderClass = DataProviderClass.class)
-    public void logIn(User user) throws InterruptedException {
+    public void logIn(User user) {
         homePage = new HomePage(driver);
         inboxPage = new InboxPage(driver);
         homePage.clickLoginButton().login(user);
@@ -43,13 +43,13 @@ public class MailTest {
     }
 
     @Test(groups = {"Smoke test"}, dependsOnMethods ={"logIn"}, dataProvider = "dataForLetter" , dataProviderClass = DataProviderClass.class )
-    private void createNewMail(Letter letter) throws InterruptedException {
+    private void createNewMail(Letter letter) {
         inboxPage.createNewMail(letter);
     }
 
     @Test(groups = {"Smoke test"}, dataProvider = "testDataForMail" , dataProviderClass = DataProviderClass.class, dependsOnMethods = {"createNewMail"})
-    private void checkingDraftPresence(com.epam.framework.pages.Mail mail) throws InterruptedException {
-        inboxPage.checkDraftAndSend(mail);
+    private void checkingDraftPresence(Letter letter) {
+        inboxPage.checkDraftAndSend(letter);
     }
 
     @AfterTest(groups = {"Smoke test"})

@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd" >
 <suite name = "Automation Test">
-    <test name = "Smoke com.epam.framework.dataProvider">
+    <test name = "Smoke com.epam.com.epam.framework.dataProvider">
         <groups>
             <run>
                 <include name = "Smoke test"/>
