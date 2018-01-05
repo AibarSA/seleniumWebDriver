@@ -14,7 +14,7 @@ import org.testng.Assert;
 
 import java.util.concurrent.TimeUnit;
 
-public class StepDef {
+public class StepDefinition {
 
     public static WebDriver driver = ChromeWebDriver.getInstance();
     InboxPage inboxPage;
