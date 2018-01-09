@@ -1,7 +1,6 @@
 package com.epam.framework.pages;
 
 import com.epam.framework.business_objects.Letter;
-import com.epam.framework.designPatterns.decorator.CustomDriverDecorator;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.interactions.Action;
