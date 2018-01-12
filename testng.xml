@@ -1,7 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd" >
 <suite name = "Automation Test">
-    <test name = "Smoke com.epam.com.epam.framework.dataProvider">
+    <listeners>
+        <listener class-name="org.uncommons.reportng.HTMLReporter"/>
+        <listener class-name="org.uncommons.reportng.JUnitXMLReporter"/>
+        <listener class-name="com.epam.framework.util.Listeners"/>
+    </listeners>
+    <test name = "Smoke">
         <groups>
             <run>
                 <include name = "Smoke test"/>

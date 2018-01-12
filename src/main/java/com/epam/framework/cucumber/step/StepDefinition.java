@@ -4,6 +4,7 @@ package com.epam.framework.cucumber.step;
 import com.epam.framework.business_objects.Letter;
 import com.epam.framework.business_objects.User;
 import com.epam.framework.designPatterns.singleton.ChromeWebDriver;
+import com.epam.framework.exeptions.DraftNotFoundExeption;
 import com.epam.framework.pages.HomePage;
 import com.epam.framework.pages.InboxPage;
 import cucumber.api.java.en.Given;
@@ -44,7 +45,11 @@ public class StepDefinition {
 
     @Then("^check presence draft with same \"([^\"]*)\" , \"([^\"]*)\" , \"([^\"]*)\" and send the message$")
     public void check_presence_draft_with_same_and_send_the_message(String recipient, String subject, String textContent) {
-        inboxPage.checkDraftAndSend(new Letter(recipient, subject, textContent));
+        try {
+            inboxPage.checkDraftAndSend(new Letter(recipient, subject, textContent));
+        } catch (DraftNotFoundExeption draftNotFoundExeption) {
+            draftNotFoundExeption.printStackTrace();
+        }
 
     }
 }

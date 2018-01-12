@@ -1,7 +1,7 @@
 package com.epam.framework.business_objects;
 
 public enum User {
-    MAIN_USER("automationTest@protonmail.com", "test123456");
+    MAIN_USER("arraylist@protonmail.com", "test123456");
     private final String userName;
     private final String password;
 
