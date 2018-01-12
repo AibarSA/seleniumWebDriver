@@ -46,7 +46,7 @@ public class MailTest {
         homePage = new HomePage(driver);
         inboxPage = new InboxPage(driver);
         homePage.clickLoginButton().login(user);
-        Assert.assertEquals("Добро пожаловат", inboxPage.welcomeText());
+        Assert.assertEquals("Добро пожаловать", inboxPage.welcomeText());
     }
 
     @Test(groups = {"Smoke test"}, dependsOnMethods ={"logIn"}, dataProvider = "dataForLetter" , dataProviderClass = DataProviderClass.class )
