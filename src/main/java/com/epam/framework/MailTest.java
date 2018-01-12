@@ -55,12 +55,8 @@ public class MailTest {
     }
 
     @Test(groups = {"Smoke test"}, dataProvider = "dataForLetter" , dataProviderClass = DataProviderClass.class, dependsOnMethods = {"createNewMail"})
-    private void checkingDraftPresence(Letter letter) {
-        try {
+    private void checkingDraftPresence(Letter letter) throws DraftNotFoundExeption {
             inboxPage.checkDraftAndSend(letter);
-        } catch (DraftNotFoundExeption draftNotFoundExeption) {
-            draftNotFoundExeption.printStackTrace();
-        }
     }
 
     @AfterTest(groups = {"Smoke test"})

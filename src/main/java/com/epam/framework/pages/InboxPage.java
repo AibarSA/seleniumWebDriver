@@ -110,7 +110,7 @@ public class InboxPage extends AbstractPage {
 
         for (WebElement webElement : list) {
             logger.info("searching draft with similar recipient and subject started");
-            if (sendersName.getText().equals(letter.getRecipient()) && subjectText.getText().equals(letter.getSubject())){
+            if (false && sendersName.getText().equals(letter.getRecipient()) && subjectText.getText().equals(letter.getSubject())){
                 webElement.click();
                 logger.debug("draft with similar recipient and subject was founded and clicked");
 
