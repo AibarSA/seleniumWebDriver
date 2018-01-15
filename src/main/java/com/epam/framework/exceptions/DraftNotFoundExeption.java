@@ -1,4 +1,4 @@
-package com.epam.framework.exeptions;
+package com.epam.framework.exceptions;
 
 public class DraftNotFoundExeption extends Exception {
     @Override

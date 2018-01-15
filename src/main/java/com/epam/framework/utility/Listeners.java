@@ -1,4 +1,4 @@
-package com.epam.framework.util;
+package com.epam.framework.utility;
 
 import com.epam.framework.designPatterns.singleton.ChromeWebDriver;
 import org.apache.commons.io.FileUtils;
@@ -41,11 +41,11 @@ public class Listeners implements ITestListener {
     }
 
     public void onStart(ITestContext iTestContext) {
-
+        logger.info("proton mail tests were started");
     }
 
     public void onFinish(ITestContext iTestContext) {
-
+        logger.info("proton mail tests were finished");
     }
 
     public  void takeScreenShot(WebDriver driver, String methodName) {

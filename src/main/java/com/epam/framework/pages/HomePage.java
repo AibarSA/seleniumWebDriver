@@ -1,7 +1,7 @@
 package com.epam.framework.pages;
 
 import com.epam.framework.designPatterns.decorator.WebelementDecorator;
-import com.epam.framework.util.Highlighter;
+import com.epam.framework.utility.Highlighter;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.openqa.selenium.WebDriver;

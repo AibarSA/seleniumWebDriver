@@ -1,39 +1,33 @@
 package com.epam.framework.cucumber.step;
 
 
+import com.epam.framework.BaseTest;
 import com.epam.framework.business_objects.Letter;
 import com.epam.framework.business_objects.User;
-import com.epam.framework.designPatterns.singleton.ChromeWebDriver;
-import com.epam.framework.exeptions.DraftNotFoundExeption;
+import com.epam.framework.exceptions.DraftNotFoundExeption;
 import com.epam.framework.pages.HomePage;
 import com.epam.framework.pages.InboxPage;
 import cucumber.api.java.en.Given;
 import cucumber.api.java.en.Then;
 import cucumber.api.java.en.When;
-import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.support.PageFactory;
 import org.testng.Assert;
 
-import java.util.concurrent.TimeUnit;
 
-public class StepDefinition {
+public class StepDefinition extends BaseTest {
 
-    public static WebDriver driver = ChromeWebDriver.getInstance();
+
     InboxPage inboxPage;
-    HomePage homePage;
-    private static final String START_URL = "https://protonmail.com/";
 
     @Given("^user navigates to protonmail home page$")
     public void user_navigates_to_protonmail_home_page() {
-        driver.manage().timeouts().implicitlyWait(15, TimeUnit.SECONDS);
-        driver.manage().window().maximize();
-        driver.get(START_URL);
+        driver = initializeDriver();
+        driver.get(properties.getProperty("url"));
     }
 
     @When("^click login button and enters user credentials and submits login form$")
     public void click_login_button_and_enters_user_credentials_and_submits_login_form() {
-        homePage = new HomePage(driver);
-        inboxPage = new InboxPage(driver);
-        homePage.clickLoginButton().login(User.MAIN_USER);
+        inboxPage = PageFactory.initElements(driver, HomePage.class).clickLoginButton().login(User.MAIN_USER);
         Assert.assertEquals("Добро пожаловать", inboxPage.welcomeText());
 
     }

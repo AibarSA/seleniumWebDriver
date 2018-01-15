@@ -4,7 +4,7 @@
     <listeners>
         <listener class-name="org.uncommons.reportng.HTMLReporter"/>
         <listener class-name="org.uncommons.reportng.JUnitXMLReporter"/>
-        <listener class-name="com.epam.framework.util.Listeners"/>
+        <listener class-name="com.epam.framework.utility.Listeners"/>
     </listeners>
     <test name = "Smoke">
         <groups>
